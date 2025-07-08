@@ -62,25 +62,37 @@ const Dashboard = () => {
 
     const groupedTickets: Record<string, Record<string, { sold: number; available: number }>> = {};
 
+    // Step 1: Group all tickets under each concert with initial zero values
+    concertList?.forEach(concert => {
+      groupedTickets[concert.concert_name] = {};
+      tickets.data?.forEach(ticket => {
+        const ticketName = ticket.ticket_name?.trim() || 'Unknown Ticket';
+        const quantityAvailable = parseInt(ticket.quantity ?? '0', 10);
 
-    paidBookings.forEach((booking) => {
+        groupedTickets[concert.concert_name][ticketName] = {
+          sold: 0,
+          available: quantityAvailable,
+        };
+      });
+    });
+
+    // Step 2: Add sold count from paid bookings
+    paidBookings.forEach(booking => {
       const concertName =
         concertList?.find(c => String(c.id) === String(booking.concertid))?.concert_name ?? 'Unknown Concert';
 
       (booking.tickets || []).forEach((ticket: any) => {
         const ticketMeta = tickets.data?.find(t => String(t.id) === String(ticket.ticket_id));
         const ticketName = ticketMeta?.ticket_name?.trim() || 'Unknown Ticket';
-        const quantitySold = ticket.quantity ?? 0;
-        const quantityAvailable = ticketMeta?.quantity ?? 0;
+        const quantitySold = parseInt(ticket.quantity ?? '0', 10);
 
-        if (!groupedTickets[concertName]) groupedTickets[concertName] = {};
-        if (!groupedTickets[concertName][ticketName]) {
-          groupedTickets[concertName][ticketName] = { sold: 0, available: quantityAvailable };
+        // Update sold count if the ticket exists in the grouped data
+        if (groupedTickets[concertName] && groupedTickets[concertName][ticketName]) {
+          groupedTickets[concertName][ticketName].sold += quantitySold;
         }
-
-        groupedTickets[concertName][ticketName].sold += quantitySold;
       });
     });
+
 
 
     const ticketsPaidDetails = Object.entries(groupedTickets).map(([concert, tickets]) => ({
