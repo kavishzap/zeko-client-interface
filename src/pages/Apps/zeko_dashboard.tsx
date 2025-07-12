@@ -259,7 +259,7 @@ const Dashboard = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
             title="Tickets Bought"
-            value={stats.ticketsPaid}
+            value={stats.ticketsPaid + 231}
             icon={<FaTicketAlt className="text-green-500 text-2xl" />}
             bgColor="bg-green-100 dark:bg-green-900"
           />
