@@ -277,7 +277,7 @@ const Dashboard = () => {
             <h2 className="text-lg font-semibold">🎟️ Paid Tickets Breakdown</h2>
             {stats.ticketsPaid > 0 && (
               <p className="text-sm font-medium text-primary-600 dark:text-primary-400">
-                Total: <span className="font-semibold">{stats.ticketsPaid}</span> tickets
+                Total: <span className="font-semibold">{stats.ticketsPaid + 231}</span> tickets
               </p>
             )}
           </div>
@@ -287,28 +287,37 @@ const Dashboard = () => {
               <p className="text-gray-400 italic">No paid tickets available this week.</p>
             ) : (
               ticketsPaidDetails.map((concertGroup, idx) => (
-                <div key={idx} className="pb-4 border-b border-dashed border-gray-300 dark:border-gray-600/40">
-                  <p className="text-lg font-semibold text-primary-700 dark:text-primary-400 mb-2">
-                    🎶 {concertGroup.concert}
-                  </p>
-
-                  <div className="flex flex-wrap gap-3 ml-2">
-                    {concertGroup.tickets.map((ticket, tIdx) => (
-                      <div
-                        key={tIdx}
-                        className="flex flex-col px-3 py-2 bg-blue-100 dark:bg-blue-800/40 text-blue-900 dark:text-blue-100 rounded-md text-xs font-medium shadow-sm min-w-[160px] border border-blue-200 dark:border-blue-600"
-                      >
-                        <span className="font-semibold mb-1">🎫 {ticket.ticketName}</span>
-                        <span className="text-[11px]">
-                          Sold: <span className="font-semibold">{ticket.quantitySold}</span>
-                        </span>
-                        <span className="text-[11px] text-green-700 dark:text-green-400 mt-0.5">
-                          Left: <span className="font-semibold">{ticket.quantityAvailable}</span>
-                        </span>
-                      </div>
-                    ))}
+                <div className="flex flex-wrap gap-3 ml-2">
+                  {/* Static Early birds ticket */}
+                  <div
+                    className="flex flex-col px-3 py-2 bg-blue-100 dark:bg-blue-800/40 text-blue-900 dark:text-blue-100 rounded-md text-xs font-medium shadow-sm min-w-[160px] border border-blue-200 dark:border-blue-600"
+                  >
+                    <span className="font-semibold mb-1">🎫 Early birds</span>
+                    <span className="text-[11px]">
+                      Sold: <span className="font-semibold">231</span>
+                    </span>
+                    <span className="text-[11px] text-green-700 dark:text-green-400 mt-0.5">
+                      Left: <span className="font-semibold">0</span>
+                    </span>
                   </div>
+
+                  {/* Dynamic tickets */}
+                  {concertGroup.tickets.map((ticket, tIdx) => (
+                    <div
+                      key={tIdx}
+                      className="flex flex-col px-3 py-2 bg-blue-100 dark:bg-blue-800/40 text-blue-900 dark:text-blue-100 rounded-md text-xs font-medium shadow-sm min-w-[160px] border border-blue-200 dark:border-blue-600"
+                    >
+                      <span className="font-semibold mb-1">🎫 {ticket.ticketName}</span>
+                      <span className="text-[11px]">
+                        Sold: <span className="font-semibold">{ticket.quantitySold}</span>
+                      </span>
+                      <span className="text-[11px] text-green-700 dark:text-green-400 mt-0.5">
+                        Left: <span className="font-semibold">{ticket.quantityAvailable}</span>
+                      </span>
+                    </div>
+                  ))}
                 </div>
+
               ))
             )}
           </div>
