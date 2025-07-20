@@ -80,7 +80,7 @@ const TicketDashboard = () => {
   );
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle,_#000_1px,_transparent_1px)] [background-size:16px_16px] p-6">
+    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle,#ccc_1px,transparent_1px)] [background-size:16px_16px] p-6">
       <div className="w-full max-w-6xl space-y-10 bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
           <h1 className="text-3xl font-bold text-gray-800">ZEKO CLIENT DASHBOARD</h1>
