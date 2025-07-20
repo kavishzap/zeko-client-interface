@@ -117,24 +117,24 @@ const Zeko_Dashboard = lazy(() => import('../pages/Apps/zeko_dashboard'));
 const routes = [
     // login Page
     {
-        path: '/',
+        path: '/zekoDashboard',
         element: <Zeko_Dashboard />,
         layout: 'blank'
+    },
+    {
+        path: '',
+        element: <LoginBoxed />,
+        layout: 'blank',
     },
     //dashboard
     {
         path: '/dashboard',
         element: <Index />,
     },
-     {
+    {
         path: '/zeko_dashboard',
         element: <Zeko_Dashboard />,
     },
-    // {
-    //     path: '/index',
-    //     element: <Index />,
-    // },
-    // analytics page
     {
         path: '/types',
         element: <Types />,
@@ -143,7 +143,7 @@ const routes = [
         path: '/users',
         element: <UsersLists />,
     },
-     {
+    {
         path: '/bookings',
         element: <Bookings />,
     },
@@ -479,11 +479,7 @@ const routes = [
         layout: 'blank',
     },
     //Authentication
-    {
-        path: '/auth/boxed-signin',
-        element: <LoginBoxed />,
-        layout: 'blank',
-    },
+
     {
         path: '/auth/boxed-signup',
         element: <RegisterBoxed />,
