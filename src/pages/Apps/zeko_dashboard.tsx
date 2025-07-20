@@ -80,23 +80,24 @@ const TicketDashboard = () => {
   );
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle,#ccc_1px,transparent_1px)] [background-size:16px_16px] p-6">
-      <div className="w-full max-w-6xl space-y-10 bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-8">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">ZEKO CLIENT DASHBOARD</h1>
+    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle,#ccc_1px,transparent_1px)] [background-size:16px_16px] px-4 py-10">
+      <div className="w-full max-w-6xl bg-white/80 backdrop-blur-md rounded-xl shadow-lg p-6 sm:p-10 space-y-10">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+          <h1 className="text-3xl font-bold text-gray-800 mb-4 sm:mb-0">ZEKO CLIENT DASHBOARD</h1>
           <button
             onClick={() => {
               localStorage.clear();
               navigate('/');
             }}
-            className="mt-4 sm:mt-0 bg-red-500 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded-lg shadow transition"
+            className="bg-red-500 hover:bg-red-600 text-white text-sm font-medium py-2 px-4 rounded-lg shadow transition"
           >
             Logout
           </button>
         </div>
 
         {/* Stat Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Card icon={<FaEnvelope />} label="Logged In" value={loggedInEmail} bg="bg-blue-500" />
           <Card icon={<FaTicketAlt />} label="Tickets Sold" value={ticketsSold} bg="bg-green-500" />
           <Card icon={<FaMoneyBillWave />} label="Revenue" value={`Rs ${totalRevenue.toLocaleString()}`} bg="bg-yellow-500" />
@@ -109,7 +110,7 @@ const TicketDashboard = () => {
             <p className="text-gray-500 italic text-center">No ticket data available for this concert.</p>
           ) : (
             <table className="min-w-full border border-gray-300 text-sm">
-              <thead className="bg-[#011d4a] text-black uppercase tracking-wider">
+              <thead className="bg-gray-900 text-black uppercase tracking-wider">
                 <tr>
                   <th className="p-2 border">Ticket Name</th>
                   <th className="p-2 border">Price (Rs)</th>
